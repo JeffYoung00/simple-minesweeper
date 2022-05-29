@@ -93,7 +93,7 @@ public class GameUI {
         @Override
         public void mouseClicked(MouseEvent e) {
             if(e.getButton()==MouseEvent.BUTTON1){
-                f.setVisible(false);
+                f.dispose();
                 try {
                     new GameUI().init();
                 } catch (IOException ex) {

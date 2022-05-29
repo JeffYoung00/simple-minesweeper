@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Bomb {
     //这里设置行数, 列数, 密度
-    static final int rows=20;
-    static final int lines=10;
-    static final int density=2;
+    static int rows=20;
+    static int lines=10;
+    static int density=15;
 
-    final int allBombs=rows*lines*density/100;
+    int allBombs=rows*lines*density/100;
     int flags=rows*lines*density/100*2;
     int toVictory=rows*lines-allBombs;
     int totalTime=999;
@@ -18,12 +18,23 @@ public class Bomb {
     int[][] mapState=new int[rows][lines];
 
     public Bomb() {
+        int c=0;
         generateMap();
+        while(isClosed()){
+            c++;
+            generateMap();
+        }
+        System.out.println(c);
     }
 
     public void generateMap(){
         Random rd=new Random();
         int bombs=0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < lines; j++) {
+                map[i][j]=0;
+            }
+        }
         while(bombs<allBombs){
             int temp=rd.nextInt()%(rows*lines);
             temp=temp<0?(-1*temp):temp;
@@ -48,6 +59,26 @@ public class Bomb {
                 }
             }
         }
+    }
+
+    public boolean isClosed(){
+        if(map[0][0]==3||map[0][lines-1]==3||map[rows-1][0]==3||map[rows-1][lines-1]==3)
+            return true;
+        for (int i = 0; i < lines; i++) {
+            if(map[0][i]==5||map[rows-1][i]==5)
+                return true;
+        }
+        for (int i = 0; i < rows; i++) {
+            if(map[i][0]==5||map[i][lines-1]==5)
+                return true;
+        }
+        for (int i = 1; i < rows; i++) {
+            for (int j = 1; j < lines; j++) {
+                if(map[i][j]==8)
+                    return true;
+            }
+        }
+        return false;
     }
 
     public void clickRight(int i,int j){
