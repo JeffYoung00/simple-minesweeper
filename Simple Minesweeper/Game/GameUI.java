@@ -17,11 +17,11 @@ public class GameUI {
     int gameOver=0;
     Bomb bomb=new Bomb();
     JFrame f=new JFrame();
-    Box top=Box.createHorizontalBox();
+    JPanel top=new JPanel(new FlowLayout());
     CardLayout emo=new CardLayout();
     JPanel emoji=new JPanel(emo);
-    JLabel countFlag=new JLabel(String.valueOf(bomb.flags));
-    JLabel countTime=new JLabel(String.valueOf(bomb.totalTime));
+    JLabel countFlag=new JLabel("剩余旗子:"+String.valueOf(bomb.flags)+"    ");
+    JLabel countTime=new JLabel("    剩余时间:"+String.valueOf(bomb.totalTime));
     JButton smile=new JButton(new ImageIcon("pic\\smile.jpg"));
     JButton cry=new JButton(new ImageIcon("pic\\cry.jpg"));
     JButton happy=new JButton(new ImageIcon("pic\\happy.jpg"));
@@ -31,15 +31,15 @@ public class GameUI {
     Image aBomb= ImageIO.read(new File("pic","aBomb.jpg"));
     Image bombing= ImageIO.read(new File("pic","bombing.jpg"));
     Image[] pics= {
-            ImageIO.read(new File("pic","zero.jpg")),
-            ImageIO.read(new File("pic","one.jpg")),
-            ImageIO.read(new File("pic","two.jpg")),
-            ImageIO.read(new File("pic","three.jpg")),
-            ImageIO.read(new File("pic","four.jpg")),
-            ImageIO.read(new File("pic","five.jpg")),
-            ImageIO.read(new File("pic","six.jpg")),
-            ImageIO.read(new File("pic","seven.jpg")),
-            ImageIO.read(new File("pic","eight.jpg"))
+            ImageIO.read(new File("pic","0.jpg")),
+            ImageIO.read(new File("pic","1.jpg")),
+            ImageIO.read(new File("pic","2.jpg")),
+            ImageIO.read(new File("pic","3.jpg")),
+            ImageIO.read(new File("pic","4.jpg")),
+            ImageIO.read(new File("pic","5.jpg")),
+            ImageIO.read(new File("pic","6.jpg")),
+            ImageIO.read(new File("pic","7.jpg")),
+            ImageIO.read(new File("pic","8.jpg"))
     };
     Canvas map=new Canvas(){
         @Override
@@ -86,7 +86,7 @@ public class GameUI {
                 bomb.clickRight(e.getX()/sizeOfSingle,e.getY()/sizeOfSingle);
             }
             map.repaint();
-            countFlag.setText(String.valueOf(bomb.flags));
+            countFlag.setText("剩余棋子:"+String.valueOf(bomb.flags)+"    ");
         }
     };
     MouseListener ma=new MouseAdapter() {
@@ -104,7 +104,7 @@ public class GameUI {
     Thread clock= new Thread(){
         public void run() {
             while(bomb.totalTime>0&&bomb.startTime==1) {
-                countTime.setText(String.valueOf(--bomb.totalTime));
+                countTime.setText("    剩余时间:"+String.valueOf(--bomb.totalTime));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -124,20 +124,18 @@ public class GameUI {
         emoji.add(smile,"smile");
         emoji.add(cry,"cry");
         emoji.add(happy,"happy");
-        top.add(countFlag);
-        ///调整间距
-        top.add(Box.createHorizontalStrut(Bomb.rows*sizeOfSingle/2-75));
-        top.add(emoji);
-        top.add(Box.createHorizontalStrut(Bomb.rows*sizeOfSingle/2-85));
-        top.add(countTime);
+
+        top.add(countFlag,BorderLayout.EAST);
+        top.add(emoji,BorderLayout.CENTER);
+        top.add(countTime,BorderLayout.WEST);
 
         f.add(top,BorderLayout.NORTH);
         f.add(map);
         ///设置文字和字体
-        countFlag.setFont(new Font("微软雅黑", Font.BOLD, 30));
-        countFlag.setForeground(Color.RED);
-        countTime.setFont(new Font("微软雅黑", Font.BOLD, 30));
-        countTime.setForeground(Color.RED);
+        countFlag.setFont(new Font("微软雅黑", Font.BOLD, 15));
+        countFlag.setForeground(Color.BLACK);
+        countTime.setFont(new Font("微软雅黑", Font.BOLD, 15));
+        countTime.setForeground(Color.BLUE);
         ///调整了一些间距啥的
         f.setSize(Bomb.rows*sizeOfSingle+20,Bomb.lines*sizeOfSingle+90);
         f.setLocationRelativeTo(null);

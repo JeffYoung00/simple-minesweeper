@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Bomb {
     //这里设置行数, 列数, 密度
-    static int rows=20;
+    static int rows=10;
     static int lines=10;
     static int density=15;
 
