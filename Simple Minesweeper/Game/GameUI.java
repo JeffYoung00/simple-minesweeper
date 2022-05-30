@@ -8,11 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-
-//这个类有main(),能直接运行
+//new GameUI().init();就能调用扫雷的界面
 public class GameUI {
-    //设置格子大小,但是用的图片都是30*30的, 表情是40*40的
-    //图片放在pic路径下, 后面再换好看点的...
     static final int sizeOfSingle =30;
     int gameOver=0;
     Bomb bomb=new Bomb();
@@ -47,15 +44,15 @@ public class GameUI {
             for(int i=0;i<Bomb.rows;i++){
                 for(int j=0;j<Bomb.lines;j++){
                     if(bomb.map[i][j]==-1&&gameOver==1){
-                        g.drawImage(aBomb,i*sizeOfSingle,j*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
+                        g.drawImage(aBomb,j*sizeOfSingle,i*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
                     }else if(bomb.map[i][j]==-2&&gameOver==1){
-                        g.drawImage(bombing,i*sizeOfSingle,j*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
+                        g.drawImage(bombing,j*sizeOfSingle,i*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
                     }else if(bomb.mapState[i][j]==1) {
-                        g.drawImage(flag, i * sizeOfSingle, j * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
+                        g.drawImage(flag, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
                     }else if (bomb.mapState[i][j] == 0) {
-                        g.drawImage(blank, i * sizeOfSingle, j * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
+                        g.drawImage(blank, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
                     } else {
-                        g.drawImage(pics[bomb.map[i][j]], i * sizeOfSingle, j * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
+                        g.drawImage(pics[bomb.map[i][j]], j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
                     }
                 }
             }
@@ -69,7 +66,7 @@ public class GameUI {
                 clock.start();
             }
             if(e.getButton()==MouseEvent.BUTTON1){
-                if(!bomb.clickLeft(e.getX()/sizeOfSingle,e.getY()/sizeOfSingle)){
+                if(!bomb.clickLeft(e.getY()/sizeOfSingle,e.getX()/sizeOfSingle)){
                     gameOver=1;
                     emo.next(emoji);
                     map.removeMouseListener(ml);
@@ -83,7 +80,7 @@ public class GameUI {
                     bomb.startTime=0;
                 }
             } else if(e.getButton()==MouseEvent.BUTTON3){
-                bomb.clickRight(e.getX()/sizeOfSingle,e.getY()/sizeOfSingle);
+                bomb.clickRight(e.getY()/sizeOfSingle,e.getX()/sizeOfSingle);
             }
             map.repaint();
             countFlag.setText("剩余棋子:"+String.valueOf(bomb.flags)+"    ");
@@ -137,7 +134,7 @@ public class GameUI {
         countTime.setFont(new Font("微软雅黑", Font.BOLD, 15));
         countTime.setForeground(Color.BLUE);
         ///调整了一些间距啥的
-        f.setSize(Bomb.rows*sizeOfSingle+20,Bomb.lines*sizeOfSingle+90);
+        f.setSize(Bomb.lines*sizeOfSingle+20,Bomb.rows*sizeOfSingle+100);
         f.setLocationRelativeTo(null);
         f.setVisible(true);
     }

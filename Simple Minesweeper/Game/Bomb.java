@@ -4,12 +4,13 @@ import java.util.Random;
 
 public class Bomb {
     //这里设置行数, 列数, 密度
-    static int rows=10;
-    static int lines=10;
-    static int density=15;
+    static int rows=20;//10~50
+    static int lines=10;//10~25
+    static int density=15;//0~40
 
+    int firstZero=-1;
     int allBombs=rows*lines*density/100;
-    int flags=rows*lines*density/100*2;
+    int flags=rows*lines*density/100;
     int toVictory=rows*lines-allBombs;
     int totalTime=999;
     int startTime=0;
@@ -18,13 +19,10 @@ public class Bomb {
     int[][] mapState=new int[rows][lines];
 
     public Bomb() {
-        int c=0;
         generateMap();
         while(isClosed()){
-            c++;
             generateMap();
         }
-        System.out.println(c);
     }
 
     public void generateMap(){
