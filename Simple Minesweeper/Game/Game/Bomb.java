@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Bomb {
     //这里设置行数, 列数, 密度
-    static int rows=20;//10~50
-    static int lines=10;//10~25
+    static int rows=50;//10~50
+    static int lines=25;//10~25
     static int density=15;//0~40
 
     int firstZero=-1;
@@ -14,6 +14,18 @@ public class Bomb {
     int toVictory=rows*lines-allBombs;
     int totalTime=999;
     int startTime=0;
+
+    public static void setRows(int rows) {
+        Bomb.rows = rows;
+    }
+
+    public static void setLines(int lines) {
+        Bomb.lines = lines;
+    }
+
+    public static void setDensity(int density) {
+        Bomb.density = density;
+    }
 
     int[][] map=new int[rows][lines];
     int[][] mapState=new int[rows][lines];
@@ -24,7 +36,11 @@ public class Bomb {
             generateMap();
         }
     }
-
+    public static void SetLevel(int rows, int lines, int density) {
+        Bomb.rows = rows;
+        Bomb.lines = lines;
+        Bomb.density = density;
+    }
     public void generateMap(){
         Random rd=new Random();
         int bombs=0;
