@@ -1,8 +1,11 @@
 import Game.GameUI;
 
 import javax.swing.*;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 
 public class UserManager {
     public static void WriteUser(User user) {
@@ -40,6 +43,22 @@ public class UserManager {
     public static void UserLogin(String name,String PSW) {
         User user = UserManager.ReadUser(name);
         if (name.equals(user.getUserName()) && PSW.equals(user.getPSW())) {
+            Client.setUsername(name);
+            Client.setLoginTime(LocalDateTime.now());
+            Client.setIP(Client.ClientSocket.getLocalAddress().getHostAddress());
+            try {
+                Client.bufferedWriter.write(name);
+                Client.bufferedWriter.newLine();
+                Client.bufferedWriter.flush();
+                Client.bufferedWriter.write(String.valueOf(LocalDateTime.now()));
+                Client.bufferedWriter.newLine();
+                Client.bufferedWriter.flush();
+                Client.bufferedWriter.write(Client.getIP());
+                Client.bufferedWriter.newLine();
+                Client.bufferedWriter.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             JOptionPane.showMessageDialog(null,"登陆成功","用户登录",JOptionPane.INFORMATION_MESSAGE);
             new GameDifficultyFrame();
         }

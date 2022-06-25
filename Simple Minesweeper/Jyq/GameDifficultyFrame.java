@@ -3,6 +3,8 @@ import Game.GameUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class GameDifficultyFrame extends JFrame {
@@ -84,10 +86,17 @@ public class GameDifficultyFrame extends JFrame {
         this.setPreferredSize(new Dimension(320,600));
         this.setTitle("扫雷难度选择");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                new Client();
+            }
+        });
         easy = new JButton("初级难度",new ImageIcon("pic\\Easy.jpg"));
         easy.addActionListener(e -> {
             if (e.getSource() == easy) {
                 Bomb.SetLevel(9,9,10);
+                this.dispose();
                 try {
                     new GameUI().init();
                 } catch (IOException E) {
@@ -100,6 +109,7 @@ public class GameDifficultyFrame extends JFrame {
         mid.addActionListener(e -> {
             if (e.getSource() == mid) {
                 Bomb.SetLevel(16,16,40);
+                this.dispose();
                 try {
                     new GameUI().init();
                 } catch (IOException E) {
@@ -112,6 +122,7 @@ public class GameDifficultyFrame extends JFrame {
         hard.addActionListener(e -> {
             if (e.getSource() == hard) {
                 Bomb.SetLevel(16,30,40);
+                this.dispose();
                 try {
                     new GameUI().init();
                 } catch (IOException E) {
@@ -125,6 +136,7 @@ public class GameDifficultyFrame extends JFrame {
         customized.addActionListener(e -> {
             if (e.getSource() == customized) {
                 //Bomb.SetLevel();
+                this.dispose();
                 JOptionPane.showMessageDialog(this,"请注意：行数不能大于50，" +
                         "列数不能大于25，密度不能大于40，否则地图过大，屏幕中无法完全展现","自定义须知", JOptionPane.WARNING_MESSAGE);
                 new InPutFrame();
