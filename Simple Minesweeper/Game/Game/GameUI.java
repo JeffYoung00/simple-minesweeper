@@ -3,9 +3,7 @@ package Game;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 //new GameUI().init();就能调用扫雷的界面
@@ -74,6 +72,10 @@ public class GameUI {
                 }
 
                 ////扫雷成功, 这里可以添加返回用时的函数!!!
+
+                //victory return 剩余时间,行数，列数，密度////////////////////////////
+
+
                 if(bomb.toVictory==0){
                     emo.last(emoji);
                     map.removeMouseListener(ml);
@@ -117,6 +119,12 @@ public class GameUI {
         smile.addMouseListener(ma);
         happy.addMouseListener(ma);
         cry.addMouseListener(ma);
+
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.out.println("haha");/////////////////////////////
+            }
+        });
 
         emoji.add(smile,"smile");
         emoji.add(cry,"cry");
