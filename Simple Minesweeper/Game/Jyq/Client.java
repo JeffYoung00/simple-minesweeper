@@ -53,11 +53,6 @@ public class Client {
     private JButton Rank;
     public JFrame MainFrame;
     public Client() {
-        try {
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(ClientSocket.getOutputStream()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         Login = new JButton("用户登录", new ImageIcon("pic\\Login.jpg"));
         Register = new JButton("用户注册", new ImageIcon("pic\\Register.jpg"));
         Rank = new JButton("查看排行榜", new ImageIcon("pic\\panic.jpeg"));

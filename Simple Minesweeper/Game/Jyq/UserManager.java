@@ -1,10 +1,14 @@
 package Jyq;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.time.LocalDateTime;
+
+import static Jyq.Client.ClientSocket;
 
 public class UserManager {
     public static void WriteUser(User user) {
@@ -44,9 +48,10 @@ public class UserManager {
         if (name.equals(user.getUserName()) && PSW.equals(user.getPSW())) {
             Client.setUsername(name);
             Client.setLoginTime(LocalDateTime.now());
-            Client.setIP(Client.ClientSocket.getLocalAddress().getHostAddress());
+            Client.setIP(ClientSocket.getLocalAddress().getHostAddress());
             try {
-                Client.ClientSocket = new Socket("localhost", 10024);
+                ClientSocket = new Socket("localhost", 10024);
+                Client.bufferedWriter = new BufferedWriter(new OutputStreamWriter(ClientSocket.getOutputStream()));
                 Client.bufferedWriter.write(name);
                 Client.bufferedWriter.newLine();
                 Client.bufferedWriter.flush();
