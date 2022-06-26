@@ -46,12 +46,12 @@ public class UserManager {
     public static void UserLogin(String name,String PSW) {
         User user = UserManager.ReadUser(name);
         if (name.equals(user.getUserName()) && PSW.equals(user.getPSW())) {
-            Client.setUsername(name);
-            Client.setLoginTime(LocalDateTime.now());
-            Client.setIP(ClientSocket.getLocalAddress().getHostAddress());
             try {
                 ClientSocket = new Socket("localhost", 10024);
                 Client.bufferedWriter = new BufferedWriter(new OutputStreamWriter(ClientSocket.getOutputStream()));
+                Client.setUsername(name);
+                Client.setLoginTime(LocalDateTime.now());
+                Client.setIP(ClientSocket.getLocalAddress().getHostAddress());
                 Client.bufferedWriter.write(name);
                 Client.bufferedWriter.newLine();
                 Client.bufferedWriter.flush();
@@ -64,6 +64,7 @@ public class UserManager {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
             JOptionPane.showMessageDialog(null,"登陆成功","用户登录",JOptionPane.INFORMATION_MESSAGE);
             new GameDifficultyFrame();
         }
