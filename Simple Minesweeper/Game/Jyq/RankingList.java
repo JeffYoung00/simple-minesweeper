@@ -1,6 +1,7 @@
 package Jyq;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -28,6 +29,9 @@ public class RankingList implements Serializable {
     }
 
     public static void main(String[] args) {
-        LazyUtils.WriteObject(Directories.RankingList, new RankingList());
+       //LazyUtils.WriteObject(Directories.RankingList, new RankingList());
+        RankingList rankingList = LazyUtils.ReadObject(Directories.RankingList, RankingList.class);
+        rankingList.addRank(new Rank("127.0.0.1", 114514,"homo", LocalDateTime.now().toString()));
+        LazyUtils.WriteObject(Directories.RankingList, rankingList);
     }
 }
