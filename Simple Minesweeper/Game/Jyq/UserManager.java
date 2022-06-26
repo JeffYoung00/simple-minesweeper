@@ -3,6 +3,7 @@ package Jyq;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
 import java.time.LocalDateTime;
 
 public class UserManager {
@@ -45,6 +46,7 @@ public class UserManager {
             Client.setLoginTime(LocalDateTime.now());
             Client.setIP(Client.ClientSocket.getLocalAddress().getHostAddress());
             try {
+                Client.ClientSocket = new Socket("localhost", 10024);
                 Client.bufferedWriter.write(name);
                 Client.bufferedWriter.newLine();
                 Client.bufferedWriter.flush();
