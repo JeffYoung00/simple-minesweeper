@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+
+import Jyq.Client;
+import Jyq.GameDifficultyFrame;
 //new GameUI().init();就能调用扫雷的界面
 public class GameUI {
     static final int sizeOfSingle =30;
@@ -71,10 +74,7 @@ public class GameUI {
                     bomb.startTime=0;
                 }
 
-                ////扫雷成功, 这里可以添加返回用时的函数!!!
-
-                //victory return 剩余时间,行数，列数，密度////////////////////////////
-
+                Client.SentGamingTime(bomb.totalTime);
 
                 if(bomb.toVictory==0){
                     emo.last(emoji);
@@ -122,7 +122,7 @@ public class GameUI {
 
         f.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                System.out.println("haha");/////////////////////////////
+                new GameDifficultyFrame();
             }
         });
 

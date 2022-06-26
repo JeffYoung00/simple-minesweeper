@@ -1,3 +1,5 @@
+package Jyq;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -32,7 +34,7 @@ public class Sever {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1024);
+        ServerSocket serverSocket = new ServerSocket(10024);
         Sever sever = new Sever(serverSocket);
         sever.StartSever();
     }

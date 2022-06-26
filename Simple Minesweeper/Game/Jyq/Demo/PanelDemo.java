@@ -1,4 +1,4 @@
-package Demo;
+package Jyq.Demo;
 
 import java.awt.*;
 

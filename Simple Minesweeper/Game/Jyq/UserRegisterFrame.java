@@ -1,3 +1,5 @@
+package Jyq;
+
 import javax.swing.*;
 import java.awt.*;
 

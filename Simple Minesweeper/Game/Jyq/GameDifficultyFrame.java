@@ -1,3 +1,5 @@
+package Jyq;
+
 import Game.Bomb;
 import Game.GameUI;
 

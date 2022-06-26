@@ -1,10 +1,8 @@
-import Game.GameUI;
+package Jyq;
 
 import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 
 public class UserManager {

@@ -1,5 +1,6 @@
+package Jyq;
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class Rank implements Serializable,Comparable<Rank> {
 
