@@ -92,7 +92,15 @@ public class Client {
         MainFrame.setIconImage(new ImageIcon("pic\\happy.jpg").getImage());
         JOptionPane.showMessageDialog(MainFrame,"欢迎来到下北泽扫雷小游戏","欢迎",JOptionPane.PLAIN_MESSAGE);
     }
-
+    public static void SentGamingTime(int Time) {
+        try {
+            Client.bufferedWriter.write(Time);
+            Client.bufferedWriter.newLine();
+            Client.bufferedWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void main(String[] args) {
         new Client();
     }
