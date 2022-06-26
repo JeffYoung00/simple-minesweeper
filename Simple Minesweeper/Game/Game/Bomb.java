@@ -108,7 +108,7 @@ public class Bomb {
             flags++;
         }
     }
-
+    //true无炸弹，false有炸弹
     public boolean clickLeft(int i,int j){
         if(! (i< rows && i> -1 && j < lines && j > -1))
             return true;

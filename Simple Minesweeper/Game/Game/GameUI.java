@@ -74,9 +74,10 @@ public class GameUI {
                     bomb.startTime=0;
                 }
 
-                Client.SentGamingTime(bomb.totalTime);
 
                 if(bomb.toVictory==0){
+                    Client.SentGamingTime(bomb.totalTime);
+                    System.out.println("haha");
                     emo.last(emoji);
                     map.removeMouseListener(ml);
                     bomb.startTime=0;
