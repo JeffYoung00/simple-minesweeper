@@ -27,7 +27,9 @@ public class Sever {
                 System.out.println("IP:" + IP);
                 Time = bufferedReader.readLine();
                 System.out.println("GamingTime:" + Time);
-            (LazyUtils.ReadObject(Directories.RankingList, RankingList.class)).addRank(new Rank(IP, Integer.parseInt(Time), name,LoginTime));
+                RankingList rankingList =  (LazyUtils.ReadObject(Directories.RankingList, RankingList.class));
+                rankingList.addRank(new Rank(IP, Integer.parseInt(Time), name,LoginTime));
+                LazyUtils.WriteObject(Directories.RankingList, rankingList);
         } catch (IOException e) {
             e.printStackTrace();
         }

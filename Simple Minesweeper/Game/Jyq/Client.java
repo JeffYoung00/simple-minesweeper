@@ -54,7 +54,7 @@ public class Client {
     public JFrame MainFrame;
     public Client() {
         try {
-            ClientSocket = new Socket("localhost", 1024);
+            ClientSocket = new Socket("localhost", 10024);
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(ClientSocket.getOutputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
