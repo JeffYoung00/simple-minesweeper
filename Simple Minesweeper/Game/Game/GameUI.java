@@ -39,18 +39,18 @@ public class GameUI {
             ImageIO.read(new File("pic","7.jpg")),
             ImageIO.read(new File("pic","8.jpg"))
     };
-    Canvas map=new Canvas(){
+    Canvas map = new Canvas() {
         @Override
         public void paint(Graphics g) {
-            for(int i=0;i<Bomb.rows;i++){
-                for(int j=0;j<Bomb.lines;j++){
-                    if(bomb.map[i][j]==-1&&gameOver==1){
-                        g.drawImage(aBomb,j*sizeOfSingle,i*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
-                    }else if(bomb.map[i][j]==-2&&gameOver==1){
-                        g.drawImage(bombing,j*sizeOfSingle,i*sizeOfSingle,sizeOfSingle,sizeOfSingle,null);
-                    }else if(bomb.mapState[i][j]==1) {
+            for (int i = 0; i < Bomb.rows; i++) {
+                for (int j = 0; j < Bomb.lines; j++) {
+                    if (bomb.map[i][j] == -1 && gameOver == 1) {
+                        g.drawImage(aBomb, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
+                    } else if (bomb.map[i][j] == -2 && gameOver == 1) {
+                        g.drawImage(bombing, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
+                    } else if (bomb.mapState[i][j] == 1) {
                         g.drawImage(flag, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
-                    }else if (bomb.mapState[i][j] == 0) {
+                    } else if (bomb.mapState[i][j] == 0) {
                         g.drawImage(blank, j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
                     } else {
                         g.drawImage(pics[bomb.map[i][j]], j * sizeOfSingle, i * sizeOfSingle, sizeOfSingle, sizeOfSingle, null);
@@ -77,7 +77,6 @@ public class GameUI {
 
                 if(bomb.toVictory==0){
                     Client.SentGamingTime(bomb.totalTime);
-                    System.out.println("haha");
                     emo.last(emoji);
                     map.removeMouseListener(ml);
                     bomb.startTime=0;
