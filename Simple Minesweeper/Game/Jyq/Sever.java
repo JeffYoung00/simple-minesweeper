@@ -32,6 +32,7 @@ public class Sever {
                     RankingList rankingList = (LazyUtils.ReadObject(Directories.RankingList, RankingList.class));
                     rankingList.addRank(new Rank(IP, Integer.parseInt(Time), name, LoginTime));
                     LazyUtils.WriteObject(Directories.RankingList, rankingList);
+                    System.out.println("用户已结束游戏！");
                 }catch (SocketException e) {
                     System.out.println("连接已断开，用户没有成功完成游戏！");
                     this.Close();
