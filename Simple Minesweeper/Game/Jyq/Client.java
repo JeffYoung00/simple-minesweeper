@@ -1,5 +1,6 @@
 package Jyq;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedWriter;
@@ -90,7 +91,7 @@ public class Client {
     }
     public static void SentGamingTime(int Time) {
         try {
-            Client.bufferedWriter.write(Time);
+            Client.bufferedWriter.write(String.valueOf(Time));
             Client.bufferedWriter.newLine();
             Client.bufferedWriter.flush();
         } catch (IOException e) {

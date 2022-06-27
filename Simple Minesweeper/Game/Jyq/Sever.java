@@ -13,11 +13,11 @@ public class Sever {
     private static String Time;
     public Sever(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
-
     }
     public void StartSever() {
-         BufferedReader bufferedReader;
-        try {
+        while (!serverSocket.isClosed()) {
+            BufferedReader bufferedReader;
+            try {
                 Socket socket = serverSocket.accept();
                 bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 name = bufferedReader.readLine();
@@ -30,15 +30,17 @@ public class Sever {
                     Time = bufferedReader.readLine();
                     System.out.println("GamingTime:" + Time);
                     RankingList rankingList = (LazyUtils.ReadObject(Directories.RankingList, RankingList.class));
+                    assert rankingList != null;
                     rankingList.addRank(new Rank(IP, Integer.parseInt(Time), name, LoginTime));
                     LazyUtils.WriteObject(Directories.RankingList, rankingList);
                     System.out.println("用户已结束游戏！");
-                }catch (SocketException e) {
+                } catch (SocketException e) {
                     System.out.println("连接已断开，用户没有成功完成游戏！");
                     this.Close();
                 }
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void Close() {
