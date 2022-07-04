@@ -4,11 +4,10 @@ import java.util.Random;
 
 public class Bomb {
     //这里设置行数, 列数, 密度
-    static int rows=50;//10~50
-    static int lines=25;//10~25
+    static int rows=20;//10~50
+    static int lines=10;//10~25
     static int density=15;//0~40
 
-    int firstZero=-1;
     int allBombs=rows*lines*density/100;
     int flags=rows*lines*density/100;
     int toVictory=rows*lines-allBombs;
