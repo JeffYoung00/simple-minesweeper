@@ -15,6 +15,7 @@ public class UserManager {
         if (!Directories.UserRepo.exists()) {
             Directories.UserRepo.mkdir();
         }
+        //检测是否有同名用户,有则退出注册,注册失败,无则注册成功//
         if (Directories.UserRepo.list().length == 0) {
             File UserRepo = Directories.UserRepo;
             File Filename = new File(UserRepo,user.getUserName());
@@ -32,6 +33,7 @@ public class UserManager {
             JOptionPane.showMessageDialog(null, "注册成功", "用户注册", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    //根据用户名查找用户//
     private static User ReadUser(String userName) {
         if (!LazyUtils.FilesIn(Directories.UserRepo).contains(userName)) {
             JOptionPane.showMessageDialog(null,"用户不存在,系统已退出","用户登录",JOptionPane.WARNING_MESSAGE);
@@ -45,6 +47,7 @@ public class UserManager {
     }
     public static void UserLogin(String name,String PSW) {
         User user = UserManager.ReadUser(name);
+        //用户存在且密码正确,则创立连接,将用户信息发送给服务器,否则退出//
         if (name.equals(user.getUserName()) && PSW.equals(user.getPSW())) {
             try {
                 ClientSocket = new Socket("localhost", 10024);

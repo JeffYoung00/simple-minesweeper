@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class User implements Serializable {
     private String UserName;
-    private String PSW;
+    private String PSW;//密码
     private static final long serialVersionUID = 114514L;
     public User(String userName, String PSW) {
         UserName = userName;

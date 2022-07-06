@@ -97,7 +97,7 @@ public class GameDifficultyFrame extends JFrame {
         easy = new JButton("初级难度",new ImageIcon("pic\\Easy.jpg"));
         easy.addActionListener(e -> {
             if (e.getSource() == easy) {
-                Bomb.SetLevel(9,9,10);
+                Bomb.SetLevel(10,10,10);
                 this.dispose();
                 try {
                     new GameUI().init();

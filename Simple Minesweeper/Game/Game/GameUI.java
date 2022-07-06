@@ -74,6 +74,8 @@ public class GameUI {
                     bomb.startTime=0;
                 }
                 if(bomb.toVictory==0){
+
+                    //取得胜利
                     Client.SentGamingTime(bomb.totalTime);
                     emo.last(emoji);
                     map.removeMouseListener(ml);

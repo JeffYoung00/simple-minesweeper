@@ -26,6 +26,12 @@ public class Bomb {
         Bomb.density = density;
     }
 
+    public static void SetLevel(int rows, int lines, int density) {
+        Bomb.rows = rows;
+        Bomb.lines = lines;
+        Bomb.density = density;
+    }
+
     int[][] map=new int[rows][lines];
     int[][] mapState=new int[rows][lines];
 
@@ -35,11 +41,7 @@ public class Bomb {
             generateMap();
         }
     }
-    public static void SetLevel(int rows, int lines, int density) {
-        Bomb.rows = rows;
-        Bomb.lines = lines;
-        Bomb.density = density;
-    }
+
     public void generateMap(){
         Random rd=new Random();
         int bombs=0;
