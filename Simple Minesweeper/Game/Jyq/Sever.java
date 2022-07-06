@@ -30,10 +30,10 @@ public class Sever {
                 //退出打印信息//
                 try {
                     Time = bufferedReader.readLine();
-                    System.out.println("GamingTime:" + Time);
+                    System.out.println("GamingTime:" + (999 - Integer.parseInt(Time)));
                     RankingList rankingList = (LazyUtils.ReadObject(Directories.RankingList, RankingList.class));
                     assert rankingList != null;
-                    rankingList.addRank(new Rank(IP, Integer.parseInt(Time), name, LoginTime));
+                    rankingList.addRank(new Rank(IP,  (999 - Integer.parseInt(Time)), name, LoginTime));
                     LazyUtils.WriteObject(Directories.RankingList, rankingList);
                     System.out.println("用户已结束游戏！");
                 } catch (SocketException e) {
