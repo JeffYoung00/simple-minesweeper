@@ -18,6 +18,7 @@ public class Sever {
         while (!serverSocket.isClosed()) {
             BufferedReader bufferedReader;
             try {
+                //开始监听//
                 Socket socket = serverSocket.accept();
                 bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 name = bufferedReader.readLine();
@@ -26,6 +27,7 @@ public class Sever {
                 System.out.println("Name:" + name);
                 System.out.println("LoginTime:" + LoginTime);
                 System.out.println("IP:" + IP);
+                //退出打印信息//
                 try {
                     Time = bufferedReader.readLine();
                     System.out.println("GamingTime:" + (999 - Integer.parseInt(Time)));
@@ -51,6 +53,7 @@ public class Sever {
         }
     }
     public static void main(String[] args) throws IOException {
+        //先创建ServerSocket, new Server()//
         ServerSocket serverSocket = new ServerSocket(10024);
         try {
             Sever sever = new Sever(serverSocket);

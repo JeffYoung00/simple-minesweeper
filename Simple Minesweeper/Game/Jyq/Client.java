@@ -16,7 +16,6 @@ public class Client {
     private static LocalDateTime LoginTime;
     public static Socket ClientSocket;
     public static  BufferedWriter bufferedWriter;
-    private JButton Login;
 
     public static String getIP() {
         return IP;
@@ -50,9 +49,11 @@ public class Client {
         LoginTime = loginTime;
     }
 
+    private JButton Login;
     private JButton Register;
     private JButton Rank;
     public JFrame MainFrame;
+    //初始化用户端的UI//
     public Client() {
         Login = new JButton("用户登录", new ImageIcon("pic\\Login.jpg"));
         Register = new JButton("用户注册", new ImageIcon("pic\\Register.jpg"));
@@ -78,7 +79,7 @@ public class Client {
             (LazyUtils.ReadObject(Directories.RankingList, RankingList.class)).ShowRank();
             MainFrame.dispose();
         });
-        MainFrame = new JFrame("下北泽扫雷游戏主界面");
+        MainFrame = new JFrame("扫雷游戏主界面");
         MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MainFrame.setBounds(500,200,500,600);
         MainFrame.setLayout(new GridLayout(3,1,10,10));
@@ -86,8 +87,9 @@ public class Client {
         MainFrame.add(Register);
         MainFrame.add(Rank);
         MainFrame.setVisible(true);
+        //图标,欢迎//
         MainFrame.setIconImage(new ImageIcon("pic\\happy.jpg").getImage());
-        JOptionPane.showMessageDialog(MainFrame,"欢迎来到下北泽扫雷小游戏","欢迎",JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(MainFrame,"欢迎来到扫雷小游戏","欢迎",JOptionPane.PLAIN_MESSAGE);
     }
     public static void SentGamingTime(int Time) {
         try {
