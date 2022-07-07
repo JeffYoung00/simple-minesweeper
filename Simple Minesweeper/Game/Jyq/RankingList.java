@@ -20,7 +20,7 @@ public class RankingList implements Serializable {
             return;
         }
         Comparator<Rank> comparator = (Rank r1, Rank r2) ->{
-            return r1.compareTo(r2);
+            return r2.compareTo(r1);
         };
         rankArrayList.sort(comparator);
         for (Rank r: rankArrayList) {
@@ -31,6 +31,7 @@ public class RankingList implements Serializable {
     public static void main(String[] args) {
        //LazyUtils.WriteObject(Directories.RankingList, new RankingList());
         RankingList rankingList = LazyUtils.ReadObject(Directories.RankingList, RankingList.class);
+        assert rankingList != null;
         rankingList.addRank(new Rank("127.0.0.1", 114514,"homo", LocalDateTime.now().toString()));
         LazyUtils.WriteObject(Directories.RankingList, rankingList);
     }
